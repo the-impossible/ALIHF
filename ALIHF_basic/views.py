@@ -9,3 +9,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 # Create your views here.
 class HomeView(TemplateView):
     template_name = "frontend/home.html"
+
+class AboutView(TemplateView):
+    template_name = "frontend/about.html"
+
+class ContactView(TemplateView):
+    template_name = "frontend/contact.html"
