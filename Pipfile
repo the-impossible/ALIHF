@@ -11,6 +11,10 @@ pillow = "*"
 mysqlclient = "*"
 whitenoise = "==6.5.0"
 django-crispy-forms = "*"
+django-phonenumbers = "*"
+crispy-bootstrap4 = "==2022.1"
+babel = "*"
+django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
 
 [dev-packages]
 

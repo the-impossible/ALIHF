@@ -22,6 +22,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "ALIHF_basic",
     "ALIHF_auth",
+    "crispy_forms",
+    "crispy_bootstrap4",
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [
@@ -36,7 +39,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "ALIHF_project.urls"
-# AUTH_USER_MODEL = 'PAS_auth.User'
+AUTH_USER_MODEL = 'ALIHF_auth.User'
 
 TEMPLATES = [
     {
@@ -102,3 +105,6 @@ STATICFILES_DIRS = [STATIC_DIR,]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = 'auth:login'
+
+PHONENUMBER_DB_FORMAT = "INTERNATIONAL"
+PHONENUMBER_DEFAULT_REGION = None
