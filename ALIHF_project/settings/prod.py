@@ -14,7 +14,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
 # Media files
-STATIC_ROOT = '/home/kadpmhmu/public_html/static'
-MEDIA_ROOT = '/home/kadpmhmu/public_html/media'
+STATIC_ROOT = '/home/jdgnrzojyt/public_html/static'
+MEDIA_ROOT = '/home/jdgnrzojyt/public_html/media'
 
 HTTP = 'https://'
