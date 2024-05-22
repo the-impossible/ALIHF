@@ -5,34 +5,46 @@
 {% block head %} {% include "partials/backend/head.html" %} {%endblock %}
 {% block body %}
 
-  <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <a href="{% url 'basic:home' %}">
-                <div class="brand-logo">
-                  <img src="{% static 'home/images/logo_both.png' %}" alt="logo">
-                </div>
+  <div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <!-- Register Card -->
+        <div class="card">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center">
+              <a href="index.html" class="app-brand-link gap-2">
+                <span class="app-brand-logo demo">
+                  <img src="{% static 'home/images/logo_both.png' %}" alt="logo" width=150>
+                </span>
               </a>
-              <h4>New here?</h4>
-              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form class="pt-3" method="POST">
-                {{form|crispy}}
-                {% csrf_token %}
-                <div class="mt-3">
-                  <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
-                </div>
-                <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="{% url 'auth:login' %}" class="text-primary">Login</a>
-                </div>
-              </form>
             </div>
+            <!-- /Logo -->
+            <h5 class="mb-2">The adventure starts here 🚀</h5>
+
+            <form id="formAuthentication" class="mb-3"  method="POST">
+              {% csrf_token %}
+              {{form|crispy}}
+              <div class="row">
+                <div class="col-sm-">
+
+                  {{form.phone_number}}
+                </div>
+              </div>
+
+              <button class="btn btn-primary d-grid w-100">Sign up</button>
+            </form>
+
+            <p class="text-center">
+              <span>Already have an account?</span>
+              <a href="{% url 'auth:login' %}">
+                <span>Sign in instead</span>
+              </a>
+            </p>
           </div>
         </div>
+        <!-- Register Card -->
       </div>
-      <!-- content-wrapper ends -->
     </div>
   </div>
 

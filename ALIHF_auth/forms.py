@@ -57,4 +57,36 @@ class AccountCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'name', 'password', 'phone_number')
+        fields = ('email', 'name', 'phone_number', 'password')
+
+
+class UpdateUserCreationForm(forms.ModelForm):
+
+    email = forms.CharField(help_text='Enter email', widget=forms.TextInput(
+        attrs={
+            'class': 'form-control ',
+            'type': 'email',
+        }
+    ))
+
+    name = forms.CharField(help_text='Enter Full name', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Enter Full name',
+            'class': 'form-control ',
+        }
+    ))
+
+    phone_number = PhoneNumberField(region="NG", help_text='Enter Phone number')
+
+
+    picture = forms.ImageField(required=False, widget=forms.FileInput(
+        attrs={
+            'class': 'form-control',
+            'type': 'file',
+            'accept': 'image/png, image/jpeg'
+        }
+    ))
+
+    class Meta:
+        model = User
+        fields = ('email', 'name', 'phone_number', 'picture')

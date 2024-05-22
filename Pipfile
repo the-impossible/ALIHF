@@ -15,6 +15,7 @@ django-phonenumbers = "*"
 crispy-bootstrap4 = "==2022.1"
 babel = "*"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
+six = "*"
 
 [dev-packages]
 

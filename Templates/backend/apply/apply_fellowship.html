@@ -1,0 +1,89 @@
+{% extends "base_back.html" %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+{% block head %} {% include "partials/backend/head.html" %} {%endblock %}
+{% block body %}
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+
+        <!-- Menu -->
+        {% include 'partials/backend/sidebar.html' %}
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+
+          <!-- Navbar -->
+          {% include 'partials/backend/auth_nav.html' %}
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">{{type}}/</span> Application</h4>
+
+              <!-- Basic Layout -->
+              <div class="row">
+                {% include 'partials/messages.html' %}
+                <div class="col-xl">
+                  <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <h5 class="mb-0">{{type}}</h5>
+                      <small class="text-muted float-end">all forms are required</small>
+                    </div>
+                    <div class="card-body">
+                      <form method="post">
+                        {% csrf_token %}
+                        <h6 class="mt-2 text-muted">all forms are required, click to provide information</h6>
+
+                        <div class="card mb-4">
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{% if contact %}Contact Information ✅ {% else %} <a href="{% url 'reg:submit_contact' type_url %}">Contact Information</a>{% endif %}
+                            </li>
+                            <li class="list-group-item">{% if education %}Education Background Information  ✅ {% else %} <a href="{% url 'reg:submit_education' type_url %}">Education Background Information </a>{% endif %}</li>
+                            <li class="list-group-item">{% if employment %}Employment History ✅ {% else %} <a href="{% url 'reg:submit_employment' type_url %}">Employment History</a> {% endif %}</li>
+                            <li class="list-group-item">{% if emergency %}Emergency Information ✅ {% else %} <a href="{% url 'reg:submit_emergency' type_url %}">Emergency Information </a> {% endif %}</li>
+                            <li class="list-group-item">{% if bio %}Bio-Medical Information ✅ {% else %} <a href="{% url 'reg:submit_bio_med' type_url %}">Bio-Medical Information</a> {% endif %}</li>
+                          </ul>
+                        </div>
+
+                        {% if type_url == 'fellowship' and record.is_fellowship %}
+                          <h6 class="mt-2 text-muted">Application processing</h6>
+                        {% elif type_url == 'webinar' and record.is_webinar %}
+                          <h6 class="mt-2 text-muted">Application processing</h6>
+                        {% else %}
+                        <div class="form-check mb-3">
+                          <input class="form-check-input" type="checkbox" value="consent" id="defaultCheck3" name="data_processing_consent" required>
+                          <label class="form-check-label" for="defaultCheck3"> Confirmation of consent to process personal data for the purpose of {{type|lower}} registration and administration, in compliance with applicable privacy regulations </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Apply for {{type}}</button>
+                        {% endif %}
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl"></div>
+              </div>
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            {% include 'partials/backend/footer.html' %}
+
+            <!-- / Footer -->
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+  {% include 'partials/backend/script.html' %}
+{%endblock %}

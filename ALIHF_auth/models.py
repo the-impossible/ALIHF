@@ -7,8 +7,6 @@ from datetime import datetime
 # My app imports
 
 # Create your models here.
-
-
 class UserManager(BaseUserManager):
     def create_user(self, email, name, phone_number, password=None):
 
@@ -53,7 +51,6 @@ class UserManager(BaseUserManager):
 
         return user
 
-
 class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.UUIDField(
         default=uuid.uuid4, primary_key=True, unique=True, editable=False)
@@ -86,6 +83,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
+
+    def has_updated(self):
+        print(f"PICS: {self.picture.url}")
+        if self.picture.url != "/media/img/user.png":
+            return True
+        return False
 
     def get_absolute_url(self):
         return reverse("auth:profile", kwargs={

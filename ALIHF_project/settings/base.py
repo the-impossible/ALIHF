@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "ALIHF_basic",
     "ALIHF_auth",
+    "ALIHF_reg",
     "crispy_forms",
     "crispy_bootstrap4",
     "phonenumber_field",

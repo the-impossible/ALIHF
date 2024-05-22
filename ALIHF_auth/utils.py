@@ -12,6 +12,7 @@ from six import text_type
 from django.contrib import messages #for sending messages
 from django.conf import settings
 
+
 # My App imports
 
 class EmailThread(threading.Thread):
@@ -41,29 +42,78 @@ email_activation_token = AppTokenGenerator()
 class Mailer(View):
 
     def send(self, user_details, which):
+        welcome = 'Welcome to the International Institute of Healthcare Leadership and Quality Improvement!'
+
+        apply_fellowship = 'Acknowledgement of Fellowship Program Application'
+        new_fellowship_application = 'A User just applied for the fellowship program'
+
+        apply_webinar = 'Confirmation: Registration for Free Webinar Series'
+        new_webinar_application = 'A User just applied for the free webinar series'
+
         reset = 'Reset Your IIHLM Account Password'
         activate = 'Verify Your IIHLM Email Address'
 
-        if which == 'reset':
-            link = reverse('auth:complete_reset_password', kwargs={'uidb64':user_details['uid'], 'token':user_details['token']})
-            activation_url = settings.HTTP+user_details['domain']+link
-            activation_path = 'auth/verify_email.html'
+        if which == 'welcome':
+            activation_path = 'backend/email/intro_mail.html'
             receiver = [user_details['email']]
-            email_subject = reset
-            context_data = {'type':'reset', 'user': user_details['fullname'], 'activate': activation_url}
+            email_subject = welcome
+            context_data = {'name': user_details['name'], 'domain':user_details['domain']}
             email_body = get_template(activation_path).render(context_data)
             EmailThread(email_subject, email_body, receiver).start()
 
-        elif which == 'verify':
-            link = reverse('auth:verify', kwargs={'uidb64':user_details['uid'], 'token':user_details['token']})
-            activation_url = settings.HTTP+user_details['domain']+link
-            activation_path = 'auth/verify_email.html'
+        elif which == 'apply_fellowship':
+            activation_path = 'backend/email/fellowship_mail.html'
             receiver = [user_details['email']]
-            email_subject = activate
-            context_data = {'type':'verify', 'user': user_details['fullname'], 'activate': activation_url}
+            email_subject = welcome
+            context_data = {'name': user_details['name'], 'domain':user_details['domain']}
             email_body = get_template(activation_path).render(context_data)
             EmailThread(email_subject, email_body, receiver).start()
-        else:
-            messages.error(request, 'Unable to process verification')
+
+        elif which == 'new_fellowship_application':
+            activation_path = 'backend/email/applicant_mail.html'
+            receiver = [settings.EMAIL_HOST_USER]
+            email_subject = new_fellowship_application
+            context_data = {
+                'name': user_details['name'],
+                'domain':user_details['domain'],
+                'phone': user_details['phone'],
+                'email':user_details['email'],
+                'type': "Fellowship Program Applicant",
+            }
+            email_body = get_template(activation_path).render(context_data)
+            EmailThread(email_subject, email_body, receiver).start()
+
+        elif which == 'apply_webinar':
+            activation_path = 'backend/email/webinar_mail.html'
+            receiver = [user_details['email']]
+            email_subject = welcome
+            context_data = {'name': user_details['name'], 'domain':user_details['domain']}
+            email_body = get_template(activation_path).render(context_data)
+            EmailThread(email_subject, email_body, receiver).start()
+
+        elif which == 'new_webinar_application':
+            activation_path = 'backend/email/applicant_mail.html'
+            receiver = [settings.EMAIL_HOST_USER]
+            email_subject = new_fellowship_application
+            context_data = {
+                'name': user_details['name'],
+                'domain':user_details['domain'],
+                'phone': user_details['phone'],
+                'email':user_details['email'],
+                'type': "Free Webinar Series Registration",
+            }
+            email_body = get_template(activation_path).render(context_data)
+            EmailThread(email_subject, email_body, receiver).start()
+
+        elif which == 'reset':
+            link = reverse('auth:reset_password_activation', kwargs={'uidb64':user_details['uid'], 'token':user_details['token']})
+            activation_url = settings.HTTP+user_details['domain']+link
+            activation_path = 'backend/email/reset_password.html'
+            receiver = [user_details['email']]
+            email_subject = reset
+            context_data = {'name': user_details['name'], 'reset': activation_url}
+            email_body = get_template(activation_path).render(context_data)
+            EmailThread(email_subject, email_body, receiver).start()
+
 
 Email = Mailer()
