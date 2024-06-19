@@ -7,8 +7,19 @@ from datetime import datetime
 # My app imports
 
 # Create your models here.
+
+class RegistrationType(models.Model):
+    creation_type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.creation_type
+
+    class Meta:
+        db_table = 'Registration Type'
+        verbose_name_plural = 'Registration Types'
+
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, phone_number, password=None):
+    def create_user(self, email, name, phone_number, registration_type, password=None):
 
         # creates a user with the parameters
         if email is None:
@@ -20,6 +31,9 @@ class UserManager(BaseUserManager):
         if phone_number is None:
             raise ValueError('Phone number is required!')
 
+        if registration_type is None:
+            raise ValueError('Registration type is required!')
+
         if password is None:
             raise ValueError('Password is required!')
 
@@ -27,6 +41,7 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             name=name.title().strip(),
             phone_number = phone_number,
+            registration_type = registration_type,
         )
 
         user.set_password(password)
@@ -34,7 +49,7 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email, name, phone_number, password=None):
+    def create_superuser(self, email, name, phone_number, registration_type, password=None):
         # create a superuser with the above parameters
 
         user = self.create_user(
@@ -42,6 +57,7 @@ class UserManager(BaseUserManager):
             name=name,
             phone_number=phone_number,
             password=password,
+            registration_type=registration_type,
         )
 
         user.is_staff = True
@@ -58,6 +74,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                              unique=True, verbose_name='email address', blank=True)
     name = models.CharField(
         max_length=100, db_index=True, blank=True, null=True)
+    registration_type = models.ForeignKey(to=RegistrationType, on_delete=models.CASCADE)
     phone_number = PhoneNumberField(db_index=True, unique=True, blank=True)
     picture = models.ImageField(
         default='img/user.png', upload_to='uploads/', null=True)

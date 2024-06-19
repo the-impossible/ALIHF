@@ -4,7 +4,6 @@ from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 from ALIHF_auth.models import *
 
-
 class AccountCreationForm(forms.ModelForm):
 
     email = forms.CharField(help_text='Enter email', widget=forms.TextInput(
@@ -29,6 +28,8 @@ class AccountCreationForm(forms.ModelForm):
     ))
 
     phone_number = PhoneNumberField(help_text='Enter Phone number',)
+
+    registration_type = forms.ModelChoiceField(queryset=RegistrationType.objects.all(), empty_label="(Select registration type )", help_text='registration type')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

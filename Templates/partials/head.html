@@ -3,21 +3,41 @@
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
+<!-- Title Tag -->
+<title>International Institute of Healthcare Leadership and Quality Assurance</title>
 
 <!-- Mobile Specific Metas
 ================================================== -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="International Institute of Healthcare Leadership and Quality Assurance">
+<meta name="description" content="Join the International Institute of Healthcare Leadership and Quality Assurance to enhance your skills and knowledge in healthcare leadership, quality assurance, and management.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="author" content="ALIHF">
 <meta name="generator" content="International Institute of Healthcare Leadership and Quality Assurance">
 
+<!-- Keywords Meta Tag -->
+<meta name="keywords" content="healthcare leadership, quality assurance, healthcare management, healthcare training, leadership courses, healthcare certification">
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="International Institute of Healthcare Leadership and Quality Assurance">
+<meta property="og:description" content="Join the International Institute of Healthcare Leadership and Quality Assurance to enhance your skills and knowledge in healthcare leadership, quality assurance, and management.">
+<meta property="og:image" content="{% static 'path/to/your/image.jpg' %}">
+<meta property="og:url" content="https://www.ihlqua.org/">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="International Institute of Healthcare Leadership and Quality Assurance">
+<meta name="twitter:description" content="Join the International Institute of Healthcare Leadership and Quality Assurance to enhance your skills and knowledge in healthcare leadership, quality assurance, and management.">
+<meta name="twitter:image" content="{% static 'home/images/logo_both_white.png' %}">
+
+<!-- Canonical Tag -->
+<link rel="canonical" href="https://www.ihlqua.org/">
+
 <!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/images/logo-main-white.png' %}" />
 
-<!-- CSS
-================================================== -->
-<!-- Themefisher Icon font -->
+<!-- CSS ================================================== -->
+<!-- Icon font -->
 <link rel="stylesheet" href="{% static 'home/plugins/themefisher-font/style.css' %}">
 <!-- bootstrap.min css -->
 <link rel="stylesheet" href="{% static 'home/plugins/bootstrap/bootstrap.min.css' %}">
@@ -29,3 +49,26 @@
 <link rel="stylesheet" href="{% static 'home/plugins/slick/slick.css' %}">
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+
+
+<!-- Schema.org Markup -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "International Institute of Healthcare Leadership and Quality Assurance",
+  "url": "https://www.ihlqua.org/",
+  "logo": "{% static 'home/images/logo_both_white.png' %}",
+  "description": "Join the International Institute of Healthcare Leadership and Quality Assurance to enhance your skills and knowledge in healthcare leadership, quality assurance, and management.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1 6823750282",
+    "contactType": "Customer service"
+  },
+  "sameAs": [
+    "https://www.facebook.com/yourprofile",
+    "https://www.twitter.com/yourprofile",
+    "https://www.linkedin.com/yourprofile"
+  ]
+}
+</script>
