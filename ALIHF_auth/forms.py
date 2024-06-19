@@ -9,14 +9,14 @@ class AccountCreationForm(forms.ModelForm):
 
     email = forms.CharField(help_text='Enter email', widget=forms.TextInput(
         attrs={
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control',
             'type': 'email',
         }
     ))
 
     password = forms.CharField(help_text='Enter Password', widget=forms.TextInput(
         attrs={
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control',
             'type': 'password',
         }
     ))
@@ -24,7 +24,7 @@ class AccountCreationForm(forms.ModelForm):
     name = forms.CharField(help_text='Enter Full name', widget=forms.TextInput(
         attrs={
             'placeholder': 'Enter Full name',
-            'class': 'form-control form-control-lg input-lg',
+            'class': 'form-control',
         }
     ))
 

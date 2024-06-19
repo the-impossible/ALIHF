@@ -10,7 +10,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center">
-						<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Welcome to the International Institute of Healthcare Leadership and Quality Improvement</h1>
+						<h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Welcome to the International Institute of Healthcare Leadership and Quality Assurance</h1>
 						<p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">This platform is designed to facilitate meaningful connections, collaboration, and <br> knowledge sharing among future health leaders.</p>
 						<a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn btn-main"
 							href="{% url 'auth:register' %}">Explore Us</a>
@@ -22,7 +22,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center">
-						<h1 data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".1">Join the International Institute of Healthcare Leadership and Quality Improvement</h1>
+						<h1 data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".1">Join the International Institute of Healthcare Leadership and Quality Assurance</h1>
 						<p data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".5">Together, we will deliberate, collaborate, and chart a transformative course for the<br> African healthcare landscape.</p>
 						<a data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".8" class="btn btn-main"
 							href="{% url 'auth:register' %}">Get started</a>
@@ -60,7 +60,7 @@
 				<div class="service-item">
 				<i class="tf-ion-ios-alarm-outline"></i>
 				<h4>Comprehensive Educational Programs</h4>
-				<p class="text-justify">We offer a diverse portfolio of online, blended, and in-person programs covering a wide range of leadership and quality improvement topics. Our programs are designed to be relevant, practical, and evidence-based, addressing the most pressing challenges facing healthcare leaders today.</p>
+				<p class="text-justify">We offer a diverse portfolio of online, blended, and in-person programs covering a wide range of leadership and Quality Assurance topics. Our programs are designed to be relevant, practical, and evidence-based, addressing the most pressing challenges facing healthcare leaders today.</p>
 				</div>
 			</div><!-- END COL -->
 			<div class="col-md-6 col-sm-6">
@@ -117,56 +117,26 @@
 			</div>
 
 			<div class="row">
+
 				<!-- single blog post -->
+
+				{% for blog in object_list  %}
 				<article class="col-lg-4 col-md-6">
 					<div class="post-item">
 						<div class="media-wrapper">
-							<img loading="lazy" src="{% static 'home/images/blog/blog2.jpg' %}" alt="amazing caves coverimage" class="img-fluid">
+							<img loading="lazy" src="{{blog.image.url}}" alt="amazing caves coverimage" class="img-fluid">
 						</div>
 
 						<div class="content">
-							<h3><a href="#">Reasons to Smile</a></h3>
-							<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-								moon officia aute, non skateboard dolor brunch.</p>
-							<a class="btn btn-main" href="#">Read more</a>
+							<h3><a href="{% url 'blog:post_details' blog.slug %}">{{blog.title|truncatechars:40}}</a></h3>
+							<a class="btn btn-main" href="{% url 'blog:post_details' blog.slug %}">Read more</a>
 						</div>
 					</div>
 				</article>
+				{% endfor %}
+
 				<!-- /single blog post -->
 
-				<!-- single blog post -->
-				<article class="col-lg-4 col-md-6">
-					<div class="post-item">
-						<div class="media-wrapper">
-							<img loading="lazy" src="{% static 'home/images/blog/blog1.jpg' %}" alt="amazing caves coverimage" class="img-fluid">
-						</div>
-
-						<div class="content">
-							<h3><a href="#">A Few Moments</a></h3>
-							<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-								moon officia aute, non skateboard dolor brunch.</p>
-							<a class="btn btn-main" href="#">Read more</a>
-						</div>
-					</div>
-				</article>
-				<!-- end single blog post -->
-
-				<!-- single blog post -->
-				<article class="col-lg-4 col-md-6">
-					<div class="post-item">
-						<div class="media-wrapper">
-							<img loading="lazy" src="{% static 'home/images/blog/blog3.jpg' %}" alt="amazing caves coverimage" class="img-fluid">
-						</div>
-
-						<div class="content">
-							<h3><a href="#">Hints for Life</a></h3>
-							<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-								moon officia aute, non skateboard dolor brunch.</p>
-							<a class="btn btn-main" href="#">Read more</a>
-						</div>
-					</div>
-				</article>
-				<!-- end single blog post -->
 			</div> <!-- end row -->
 		</div> <!-- end container -->
 	</section> <!-- end section -->

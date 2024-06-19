@@ -25,13 +25,6 @@
             <form id="formAuthentication" class="mb-3"  method="POST">
               {% csrf_token %}
               {{form|crispy}}
-              <div class="row">
-                <div class="col-sm-">
-
-                  {{form.phone_number}}
-                </div>
-              </div>
-
               <button class="btn btn-primary d-grid w-100">Sign up</button>
             </form>
 

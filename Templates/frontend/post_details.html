@@ -1,0 +1,116 @@
+{% extends "base_front.html" %}
+{% load static %}
+{% block title %} Post Details {% endblock %}
+{% block head %} {% include "partials/head.html" %} {%endblock %}
+{% block body %}
+	{% block nav %} {% include "partials/nav.html" %} {%endblock %}
+
+
+<section class="single-page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>{{object.title}}</h2>
+				<ol class="breadcrumb header-bradcrumb justify-content-center">
+					<li class="breadcrumb-item"><a href="{% url 'basic:home' %}" class="text-white">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Blog</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- blog details part start -->
+<section class="blog-details section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <article class="post">
+          <div class="post-image mb-5">
+            <img loading="lazy" class="img-fluid w-100" src="{{object.image.url}}" alt="post-image">
+          </div>
+          <!-- Post Content -->
+          <div class="post-content">
+            <p>{{ object.body|safe }}</p>
+
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4 mt-5 mt-lg-0">
+        <!-- sidebar -->
+        <aside class="sidebar pl-0 pl-lg-4">
+          {% comment %} <div class="widget-search widget">
+            <form action="#">
+              <!-- Search bar -->
+              <input class="form-control shadow-none" type="text" placeholder="Search..." name="search">
+              <button type="submit" class="widget-search-btn">
+                <i class="tf-ion-ios-search"></i>
+              </button>
+            </form>
+          </div>
+          <div class="widget-categories widget">
+            <h2>Categories</h2>
+            <!-- widget categories list -->
+            <ul class="widget-categories-list">
+              <li>
+                <a href="blog.html">Financial Advise</a>
+              </li>
+              <li>
+                <a href="blog.html">Businee Growth</a>
+              </li>
+              <li>
+                <a href="blog.html">Investment Marketing</a>
+              </li>
+              <li>
+                <a href="blog.html">Business Consulting</a>
+              </li>
+              <li>
+                <a href="blog.html">Advanced Analytics</a>
+              </li>
+              <li>
+                <a href="blog.html">Investment Marketing</a>
+              </li>
+            </ul>
+          </div> {% endcomment %}
+          <div class="widget-post widget">
+            <h2>Recent Post</h2>
+            <!-- latest post -->
+            <ul class="widget-post-list">
+
+              {% for blog in recent %}
+              <li class="widget-post-list-item">
+                <div class="widget-post-image">
+                  <a href="{% url 'blog:post_details' blog.slug %}">
+                    <img loading="lazy" src="{{blog.image.url}}" alt="post-img">
+                  </a>
+                </div>
+                <div class="widget-post-content">
+                  <a href="{% url 'blog:post_details' blog.slug %}">
+                    <h5>{{blog.title}}.</h5>
+                  </a>
+                  <h6>{{blog.created}}</h6>
+                </div>
+              </li>
+              {% endfor %}
+
+
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- blog details part end -->
+{% include 'partials/stats.html' %}
+
+<!--
+Start Call To Action
+==================================== -->
+{% include 'partials/action.html' %}
+	<!-- End section -->
+
+{% include "partials/footer.html" %}
+{% include "partials/script.html" %}
+
+{%endblock %}

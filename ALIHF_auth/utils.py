@@ -42,7 +42,7 @@ email_activation_token = AppTokenGenerator()
 class Mailer(View):
 
     def send(self, user_details, which):
-        welcome = 'Welcome to the International Institute of Healthcare Leadership and Quality Improvement!'
+        welcome = 'Welcome to the International Institute of Healthcare Leadership and Quality Assurance!'
 
         apply_fellowship = 'Acknowledgement of Fellowship Program Application'
         new_fellowship_application = 'A User just applied for the fellowship program'
