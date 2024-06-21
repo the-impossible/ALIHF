@@ -8,18 +8,19 @@ from datetime import datetime
 
 # Create your models here.
 
-class RegistrationType(models.Model):
-    creation_type = models.CharField(max_length=100)
+# class RegistrationType(models.Model):
+#     creation_type = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.creation_type
+#     def __str__(self):
+#         return self.creation_type
 
-    class Meta:
-        db_table = 'Registration Type'
-        verbose_name_plural = 'Registration Types'
+#     class Meta:
+#         db_table = 'Registration Type'
+#         verbose_name_plural = 'Registration Types'
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, phone_number, registration_type, password=None):
+    def create_user(self, email, name, phone_number, password=None):
+    # def create_user(self, email, name, phone_number, registration_type, password=None):
 
         # creates a user with the parameters
         if email is None:
@@ -41,7 +42,7 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             name=name.title().strip(),
             phone_number = phone_number,
-            registration_type = registration_type,
+            # registration_type = registration_type,
         )
 
         user.set_password(password)
@@ -49,7 +50,8 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email, name, phone_number, registration_type, password=None):
+    def create_superuser(self, email, name, phone_number, password=None):
+    # def create_superuser(self, email, name, phone_number, registration_type, password=None):
         # create a superuser with the above parameters
 
         user = self.create_user(
@@ -57,7 +59,7 @@ class UserManager(BaseUserManager):
             name=name,
             phone_number=phone_number,
             password=password,
-            registration_type=registration_type,
+            # registration_type=registration_type,
         )
 
         user.is_staff = True
@@ -74,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                              unique=True, verbose_name='email address', blank=True)
     name = models.CharField(
         max_length=100, db_index=True, blank=True, null=True)
-    registration_type = models.ForeignKey(to=RegistrationType, on_delete=models.CASCADE)
+    # registration_type = models.ForeignKey(to=RegistrationType, on_delete=models.CASCADE)
     phone_number = PhoneNumberField(db_index=True, unique=True, blank=True)
     picture = models.ImageField(
         default='img/user.png', upload_to='uploads/', null=True)
@@ -102,7 +104,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         return True
 
     def has_updated(self):
-        print(f"PICS: {self.picture.url}")
         if self.picture.url != "/media/img/user.png":
             return True
         return False
