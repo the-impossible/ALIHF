@@ -177,3 +177,19 @@ class FellowshipProgram(models.Model):
         db_table = 'Fellowship Program'
         verbose_name_plural = 'Fellowship Program'
 
+class WebinarSurveys(models.Model):
+
+    survey_id = models.UUIDField(
+        default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    survey_title = models.CharField(max_length=100)
+    accepting_response = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now=True)
+    link = models.URLField()
+    frame_link = models.URLField(blank=True)
+
+    def __str__(self):
+        return f"{self.survey_title} : {self.link}"
+
+    class Meta:
+        db_table = 'Webinar Surveys'
+        verbose_name_plural = 'Webinar Surveys'

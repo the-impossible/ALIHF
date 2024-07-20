@@ -312,3 +312,15 @@ class SubmitBioMedInformationView(LoginRequiredMixin, SuccessMessageMixin, Creat
         messages.success(self.request, self.success_message)
         return reverse("reg:apply_fellowship", kwargs={'type_id': type_id})
 
+
+@method_decorator(has_updated, name="get")
+class WebinarSurvey(LoginRequiredMixin, ListView):
+    model = WebinarSurveys
+    template_name = "backend/apply/survey.html"
+    def get_queryset(self):
+        return WebinarSurveys.objects.filter(accepting_response=True).order_by('-date_created')
+
+
+class WebinarSurveyDetailView(DetailView):
+    model = WebinarSurveys
+    template_name = "backend/apply/survey_details.html"
