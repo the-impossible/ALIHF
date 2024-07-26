@@ -32,7 +32,11 @@
                 <div class="col-xl">
                   <div class="card">
                     <h5 class="card-header">{{object.survey_title}}</h5>
-                    <iframe src="{{object.frame_link}}" width="640" height="4316" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <p class="card-text text-center">Form not displaying? <a href="{{object.link}}">click to use alternative link</a> </p>
+                      <iframe class="_embed-responsive-item" src="{{object.frame_link}}" width="640" height="4316" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    </div>
                   </div>
                 </div>
                 <div class="col-xl"></div>

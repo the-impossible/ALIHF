@@ -1,0 +1,61 @@
+{% extends "base_front.html" %}
+{% load static %}
+{% block title %} Survey Details {% endblock %}
+{% block head %} {% include "partials/head.html" %} {%endblock %}
+
+{% block body %}
+	{% block nav %} {% include "partials/nav.html" %} {%endblock %}
+
+
+    <section class="single-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Webinar Survey</h2>
+                    <ol class="breadcrumb header-bradcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'basic:home' %}" class="text-white">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Webinar Survey</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Start Our Team
+		=========================================== -->
+<section class="team" id="team">
+	<div class="container">
+		<div class="row justify-content-center">
+			<!-- section title -->
+			<div class="col-xl-8 col-lg-8">
+				<div class="title text-center ">
+					<h2>Thank You for Participating</h2>
+					<p>Your feedback is invaluable in helping us improve our webinars and overall services. Your insights will contribute to enhancing the quality and relevance of our future offerings. We are committed to providing the best possible experience for our community, and your input plays a crucial role in that process.</p>
+					<div class="border"></div>
+				</div>
+			</div>
+			<!-- /section title -->
+		</div>
+		<div class="row">
+
+            <div class="col-md-8 col-sm-12">
+                <div class="card">
+                    <h5 class="card-header">{{object.survey_title}}</h5>
+                    <div class="card-body">
+                        <p>Form not displaying? <a href="{{object.link}}">click to use alternative link</a> </p>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="_embed-responsive-item" src="{{object.frame_link}}" width="640" height="4316" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+		</div> <!-- End row -->
+	</div> <!-- End container -->
+</section> <!-- End section -->
+
+{% include "partials/footer.html" %}
+{% include "partials/script.html" %}
+
+{%endblock %}

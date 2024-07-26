@@ -20,3 +20,7 @@
 
 <!-- Custom js -->
 <script src="{% static 'home/js/script.js' %}"></script>
+
+{% if request.path == '/webinars' %}
+<script src="{% static 'home/js/lite-yt-embed.js' %}"></script>
+{% endif %}

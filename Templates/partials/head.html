@@ -50,6 +50,10 @@
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
 
+{% if request.path == '/webinars' %}
+<link rel="stylesheet" href="{% static 'home/css/lite-yt-embed.css' %}">
+{% endif %}
+
 
 <!-- Schema.org Markup -->
 <script type="application/ld+json">

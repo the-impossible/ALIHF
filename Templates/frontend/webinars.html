@@ -1,0 +1,109 @@
+{% extends "base_front.html" %}
+{% load static %}
+{% block title %} Home {% endblock %}
+{% block head %} {% include "partials/head.html" %} {%endblock %}
+
+{% block body %}
+	{% block nav %} {% include "partials/nav.html" %} {%endblock %}
+
+
+    <section class="single-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Our Webinars</h2>
+                    <ol class="breadcrumb header-bradcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'basic:home' %}" class="text-white">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Our Webinars</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Start Our Team
+		=========================================== -->
+<section class="team" id="team">
+	<div class="container">
+		<div class="row justify-content-center">
+			<!-- section title -->
+			<div class="col-xl-8 col-lg-8">
+				<div class="title text-center ">
+					<h2>Our Webinars</h2>
+					<p>Join our free webinars to gain valuable insights from leading experts in healthcare leadership and quality improvement. Each session covers key topics and best practices, offering practical knowledge you can apply in your professional role. Watch the recordings below to enhance your skills and stay updated with the latest in healthcare innovation.</p>
+					<div class="border"></div>
+				</div>
+			</div>
+			<!-- /section title -->
+		</div>
+		<div class="row">
+
+            {% if object_list %}
+
+                {% for object in object_list %}
+                <div class="col-sm-4 mt-3">
+                    <div class="card">
+                        <lite-youtube videoid="{{object.video_id}}" playlabel="Play: Keynote (Google I/O '18)"></lite-youtube>
+                        <div class="card-body">
+                            <h6 class="card-title">{{object.webinar_speaker}}</h6>
+                            <p>{{object.webinar_title}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            {% else %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>No Webinars Available at the moment</p>
+                    </div>
+                </div>
+            </div>
+
+            {% endif %}
+
+            <div class="col-lg-8 mt-5">
+                <article class="post">
+                  <!-- Post Content -->
+                  <div class="post-content">
+
+                    <h3>Post Webinars Survey </h3>
+                    <ul class="comment-list">
+                      <!-- comment list -->
+
+                        {% if survey_list %}
+                            {% for survey in survey_list %}
+                            <li class="comment-list-item">
+                            <div class="comment-list-item-content">
+                                <h5>{{survey.survey_title}}</h5>
+                                <p>{{survey.date_created}}</p>
+                                <a href="{% url 'basic:survey_details' survey.pk %}" class="comment-btn">take survey</a>
+                            </div>
+                            </li>
+                            {% endfor %}
+                            {% else %}
+                            <li class="comment-list-item">
+                                <div class="comment-list-item-content">
+                                    <p>No survey Available at the moment </p>
+                                </div>
+                            </li>
+
+
+                        {% endif %}
+
+                    </ul>
+                  </div>
+                </article>
+              </div>
+
+		</div> <!-- End row -->
+	</div> <!-- End container -->
+</section> <!-- End section -->
+
+{% include "partials/footer.html" %}
+{% include "partials/script.html" %}
+
+{%endblock %}

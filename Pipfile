@@ -17,6 +17,7 @@ babel = "*"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
 six = "*"
 django-ckeditor-5 = "*"
+opencv-python = "*"
 
 [dev-packages]
 
