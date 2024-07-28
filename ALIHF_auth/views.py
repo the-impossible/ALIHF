@@ -173,4 +173,4 @@ class ResetPasswordActivationView(View):
             return redirect('auth:reset_password')
 
 class TestEmailView(TemplateView):
-    template_name = "backend/email/fellowship_mail.html"
+    template_name = "backend/email/certificate.html"
