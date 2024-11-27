@@ -1,0 +1,73 @@
+{% extends "base_front.html" %}
+{% load static %}
+{% block title %} Polls {% endblock %}
+{% block head %} {% include "partials/head.html" %} {%endblock %}
+
+{% block body %}
+	{% block nav %} {% include "partials/nav.html" %} {%endblock %}
+
+
+    <section class="single-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>POLLS</h2>
+                    <ol class="breadcrumb header-bradcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'basic:home' %}" class="text-white">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Polls</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Start Our Team
+		=========================================== -->
+<section class="team" id="team">
+	<div class="container">
+		<div class="row justify-content-center">
+			<!-- section title -->
+			<div class="col-xl-8 col-lg-8">
+				<div class="title text-center ">
+					<h2>Healthcare Insights Polls</h2>
+					<p>Engage in thought-provoking healthcare polls that explore key concepts in Patient-Centered Care, Digital Health Technology Integration, and Global Health Equity. Share your perspectives, test your knowledge, and contribute to meaningful discussions on improving healthcare quality and transformation.</p>
+					<div class="border"></div>
+				</div>
+			</div>
+			<!-- /section title -->
+		</div>
+
+		<div class="row justify-content-center">
+
+            <div class="col-md-8 col-sm-12">
+                <div class="card">
+
+                    {% if object.accepting_response %}
+
+                    <h5 class="card-header">{{object.poll_title}}</h5>
+                    <div class="card-body">
+                        <p>Poll not displaying? <a href="{{object.link}}">click to use alternative link </a> </p>
+                        <div class="embed-responsive embed-responsive-1by1">
+                            <iframe class="_embed-responsive-item" src="{{object.frame_link}}" width="640" height="943" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                        </div>
+                    </div>
+                    {% else %}
+                    <h5 class="card-header">{{object.poll_title}}</h5>
+                    <div class="card-body">
+                        <p>This poll is no longer accepting responses. Thank you for your interest and participation! Stay tuned for upcoming polls and discussions on healthcare quality and transformation. </a> </p>
+                        
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+		</div> <!-- End row -->
+	</div> <!-- End container -->
+</section> <!-- End section -->
+
+{% include "partials/footer.html" %}
+{% include "partials/script.html" %}
+
+{%endblock %}

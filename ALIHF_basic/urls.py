@@ -9,5 +9,5 @@ urlpatterns = [
     path('contact', ContactView.as_view(), name='contact'),
     path('webinars', WebinarsView.as_view(), name='webinars'),
     path('survey_details/<str:pk>', WebinarSurveyDetailView.as_view(), name='survey_details'),
-
+    path('poll_details/<str:pk>', PollDetailView.as_view(), name='poll_details'),
 ]

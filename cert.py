@@ -11,6 +11,7 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from six import text_type
 from django.contrib import messages #for sending messages
 from django.conf import settings
+from datetime import datetime
 import cv2
 import os
 import django
@@ -59,15 +60,46 @@ class Mailer(View):
 Email = Mailer()
 
 list_name = [
-    ['Dr. Adesola Oyinide', 'vastoutlet.ecommerce@gmail.com'],
-    ['Richard Emmanuel Eghenayarhiore', 'richardemmanuel45@gmail.com'],
+    ['Dr. Lucky oteheri Omowhara', 'omowharaluckyoteheri87@gmail.com'],
+    ['Dr. Lucky oteheri Omowhara', 'doctorlukenzorsanchez@gmail.com'],
+    ['Femi Michael Aderibigbe', 'michaelfemi80@gmail.com'],
+    ['Dr Adesola A. Oniyide', 'adesolaoniyide@abuad.edu.ng'],
+    ['Bunmilola Oyeleye', 'bumbells2003@yahoo.com'],
+    ['Dennis Anthony Musango', 'makwallahealthcare@gmail.com'],
+    ['Richard Emmanuel Eghenayahiore', 'richardemmanuel45@gmail.com'],
+    ['Dr. Joshua Kolawole', 'oshuasj@gmail.com'],
 ]
 
 for index, details in enumerate(list_name):
 
     template = cv2.imread(rf'certificate.jpg')
 
-    cv2.putText(template, details[0], (270, 375), cv2.FONT_HERSHEY_COMPLEX, 0.4, (0,0,0), 1, cv2.LINE_AA)
+    # Text and font settings
+    text = details[0]
+    font = cv2.FONT_HERSHEY_TRIPLEX
+    font_scale = 0.7
+    font_thickness = 1
+
+    # Date
+    current_date = datetime.now().date()
+
+    # Format the date to day-month-year
+    formatted_date = current_date.strftime("%d-%m-%Y")
+
+
+    # Calculate the text size
+    text_size = cv2.getTextSize(text, font, font_scale, font_thickness)[0]
+
+    # Calculate the x-coordinate to center the text
+    x_start = 127
+    x_end = 599
+    y = 309
+
+    x = x_start + (x_end - x_start - text_size[0]) // 2
+
+    cv2.putText(template, text, (x, y), font, font_scale, (0, 0, 0), font_thickness, cv2.LINE_AA)
+    cv2.putText(template, str(formatted_date), (210, 517), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0), font_thickness, cv2.LINE_AA)
+
     cert_name = f"{details[0].split(' ')[1]}.jpg"
     cv2.imwrite(rf"generated_cert\{cert_name}", template)
 

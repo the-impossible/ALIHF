@@ -35,3 +35,7 @@ class WebinarsView(TemplateView):
 class WebinarSurveyDetailView(DetailView):
     model = WebinarSurveys
     template_name = "frontend/survey_details.html"
+
+class PollDetailView(DetailView):
+    model = Polls
+    template_name = "frontend/polls.html"
